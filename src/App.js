@@ -2,7 +2,7 @@ import React, { Component } from 'react';
 import './App.css';  
 
 const myVehicles=[{type:['porsche','bmw','mc-larren','volvo','vw']},{type:['Toyota','lexus','mazda']}];
-class App extends Component {
+class Render extends Component {
 
   constructor(props){
     super(props);
@@ -12,9 +12,6 @@ class App extends Component {
   render() {
     return (
       <div className="App">
-      <div id="header">
-      <p>React Baby!</p>
-      </div>
       <button type="button">Vehicles!</button>
       <div id="vehicles">
       {this.state.myVehicles.map(brand=>{
@@ -28,10 +25,10 @@ class App extends Component {
   }
 }
 
-class Dennis extends React.Component{
+class Toggle extends React.Component{
   constructor(props){
     super(props);
-    this.state={name:'Front-End',favourites:true}
+    this.state={name:'yay!,howdy engineers:)',favourites:true}
     this.toggleFavourites=this.toggleFavourites.bind(this);
   }
   //toggle function
@@ -42,18 +39,20 @@ this.setState({favourites:!this.state.favourites}); //OR this.setState({state=>(
   render(){
     return(
       <div className="myFavourites">
-        <button id="togglerenderButton" onClick={()=>{this.toggleFavourites()}}>Render me!</button>
+      
+        <button id="togglerenderButton" onClick={()=>{this.toggleFavourites()}}>Toggle and flip me!</button>
+        
         <div>
-         {this.state.favourites? 
-         <p>{this.state.name}</p>:
-         <p>Back-End</p> }
+         {this.state.favourites ? 
+         <p>{this.state.name}</p> :
+         <p>Pretty fine fellow developer</p> }
       </div>
       </div>
     )
   }
 }
 let phoneBrands=['samsung','apple','oppo','oneplus','blackberry','google-pixel','nokia']
- class Form extends React.Component{
+ class Filter extends React.Component{
    constructor(props){
      super(props);
      this.state={phoneBrands:phoneBrands};
@@ -68,20 +67,60 @@ let phoneBrands=['samsung','apple','oppo','oneplus','blackberry','google-pixel',
       })
     //setstate
     this.setState({phoneBrands:updatedPhones})
+    
    }
    render(){
      return (
        <div className="Form">
 <form>
   <label>Enter:</label>
-  <input onChange={(event)=>{this.filter(event)}} type="text" placeholder="filter..." name="filter"></input>
+  <input onChange={(event)=>{this.filter(event)}} type="text" placeholder="Filter..." name="filter"></input>
 </form>
 <div>
-  {this.state.phoneBrands.map(x=>{
-    return <p key={Math.random() * 100}>{x}</p>})}
+  {this.state.phoneBrands.length < 1 ? <p>Dang!,no results:(</p> :
+  this.state.phoneBrands.map(x=>{
+    return <p key={Math.random() * 100}>{x}</p>})
+  }
 </div>
        </div>
      )
    }
  }
-export {App,Dennis,Form};
+ class Mainapp extends React.Component {
+  constructor(props){
+  super(props);
+  this.myOption=this.myOption.bind(this);
+  this.state={optionsArray:<Toggle />};
+}
+myOption(e){
+if(e.target.value === 'Toggle'){
+  this.setState({optionsArray:<Toggle />})
+}else if(e.target.value === 'Render'){
+  this.setState({optionsArray:<Render />})
+}else{
+  this.setState({optionsArray:<Filter />})
+}
+}
+
+componentDidUpdate(){
+console.log('state updated');
+}
+   render(){
+     return (
+       <div>
+         <div className="title">
+       <p>Amazing React</p>
+       </div>
+       <div className="MainApp">
+       <select onChange={(e)=>{this.myOption(e)}}>
+         <option>Toggle</option>
+         <option>Render</option>
+         <option>Filter</option>
+       </select>
+         <p>{this.state.optionsArray}</p> 
+</div>
+       </div>
+     );
+   }
+ }
+export {Mainapp};

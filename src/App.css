@@ -1,48 +1,62 @@
+* {
+  box-sizing: border-box;
+}
 body {
   overflow-x: hidden;
 }
 button {
   border: 1px solid green;
   width: 65px;
-  height: 35px;
-}
-.App > button,#vehicles {
-  position: relative;
-  left:35%;
-}
-#header > p {
-  position: relative;
-  left: 35%;
-  font-size: 32px;
-}
-.myFavourites > button {
-  position:absolute;
-top:100px;
-left:100px;
+  height: 65px;
+  outline: azure;
+  border-radius: 5px;
 }
 .myFavourites > div {
-  position:absolute;
-  top:150px;
-  left:100px;
   transition: transform 2s;
 }
 .myFavourites > div:hover {
-  transform:rotateX(360deg)
+  transform:rotateY(360deg);
 }
 form > input {
   position: absolute;
   height: 38px;
-  left:60%;
-  top:100px;
+  left:53%;
+  top:148px;
 }
 form > label {
-  position: absolute;
-  left: 55%;
   font-size: 18px;
-  top:100px;
 }
-.Form > div {
-  position: absolute;
-  left: 60%;
-  top:130px;
+
+.MainApp,.title  {
+display: flex;
+justify-content: center;
+align-items: center;
+flex-direction: column;
+
+}
+.title > p {
+font-size: 32px;
+}
+
+select {
+  border: 1px solid green;
+  height: 38px;
+  width: 85px;
+}
+
+select {
+  animation-name: selectMe;
+  animation-duration: 2s;
+  animation-iteration-count: infinite;
+}
+@keyframes selectMe {
+  0% {
+    border: 1px solid green;
+  }
+  50%{
+    border: 3px solid pink;
+  }
+  100% {
+    border: 1px solid green;
+  }
 }
